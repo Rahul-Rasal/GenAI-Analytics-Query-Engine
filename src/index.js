@@ -5,11 +5,9 @@ import apiRoutes from "./routes/apiRoutes.js";
 
 const app = express();
 
-// Middleware
 app.use(bodyParser.json());
 app.use("/api", apiRoutes);
 
-// Health check endpoint
 app.get("/health", (req, res) => {
   res.json({
     status: "OK",
@@ -17,7 +15,6 @@ app.get("/health", (req, res) => {
   });
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error("Global error handler:", err);
   res.status(500).json({

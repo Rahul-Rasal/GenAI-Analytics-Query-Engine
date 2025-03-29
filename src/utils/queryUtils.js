@@ -6,11 +6,9 @@ export const processNaturalQuery = (queryText) => {
     conditions: {},
   };
 
-  // Table detection
   if (query.includes("sales")) result.table = "sales";
   if (query.includes("user")) result.table = "users";
 
-  // Condition parsing
   const conditionMap = {
     north: { field: "region", value: "North" },
     south: { field: "region", value: "South" },
@@ -41,20 +39,6 @@ export const generateMockSQL = (table, conditions) => {
   return `SELECT * FROM ${table} ${whereClause}`.trim();
 };
 
-// export const validateQuery = (parsedQuery) => {
-//   const errors = [];
-
-//   if (!parsedQuery.table) {
-//     errors.push("No valid table specified");
-//   } else if (!config.MOCK_DB[parsedQuery.table]) {
-//     errors.push(`Table '${parsedQuery.table}' doesn't exist`);
-//   }
-
-//   return {
-//     valid: errors.length === 0,
-//     errors,
-//   };
-// };
 export const validateQuery = (parsedQuery) => {
   const errors = [];
 
